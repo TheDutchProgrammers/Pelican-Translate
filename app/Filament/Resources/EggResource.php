@@ -82,11 +82,10 @@ class EggResource extends Resource
                         // ->columns(2)
                         ->schema([
                             Forms\Components\Repeater::make('Blah')
-                                ->grid(3)
+                                ->grid()
                                 ->relationship('variables')
                                 ->name('name')
-                                ->columns(1)
-                                ->columnSpan(1)
+                                ->collapsible(true)->collapsed()
                                 ->itemLabel(fn (array $state) => $state['name'])
                                 ->schema([
                                     Forms\Components\TextInput::make('name')->live()->maxLength(191)->columnSpanFull(),
