@@ -144,7 +144,7 @@ class EditProfile extends \Filament\Pages\Auth\EditProfile
 
                                         return [
                                             Placeholder::make('qr')
-                                                ->label('Scan QR Code')
+                                                ->label(trans("admin/api.user_api.scan_qr"))
                                                 ->content(fn () => new HtmlString("
                                                 <div style='width: 300px'>$image</div>
                                             "))
@@ -156,16 +156,16 @@ class EditProfile extends \Filament\Pages\Auth\EditProfile
                                     ->icon('tabler-key')
                                     ->schema([
                                         Grid::make('asdf')->columns(5)->schema([
-                                            Section::make('Create API Key')->columnSpan(3)->schema([
+                                            Section::make(trans("admin/api.user_api.create_key"))->columnSpan(3)->schema([
                                                 TextInput::make('description'),
                                                 TagsInput::make('allowed_ips')
                                                     ->splitKeys([',', ' ', 'Tab'])
-                                                    ->placeholder('Example: 127.0.0.1 or 192.168.1.1')
-                                                    ->label('Whitelisted IP\'s')
-                                                    ->helperText('Press enter to add a new IP address or leave blank to allow any IP address')
+                                                    ->placeholder(trans("admin/api.user_api.placeholder"))
+                                                    ->label(trans("admin/api.user_api.whitelisted_ip"))
+                                                    ->helperText(trans("admin/api.user_api.helper_text"))
                                                     ->columnSpanFull(),
                                             ])->headerActions([
-                                                Action::make('Create')
+                                                Action::make(trans("admin/api.user_api.create"))
                                                     ->successRedirectUrl('/panel/profile?tab=-api-keys-tab')
                                                     ->action(function (Get $get, Action $action) {
                                                         $token = auth()->user()->createToken(
@@ -181,7 +181,7 @@ class EditProfile extends \Filament\Pages\Auth\EditProfile
                                                         $action->success();
                                                     }),
                                             ]),
-                                            Section::make('API Keys')->columnSpan(2)->schema([
+                                            Section::make(trans("admin/api.user_api.api_keys"))->columnSpan(2)->schema([
                                                 Repeater::make('keys')
                                                     ->relationship('apiKeys')
                                                     ->addable(false)
@@ -206,13 +206,13 @@ class EditProfile extends \Filament\Pages\Auth\EditProfile
                                         ]),
                                     ]),
 
-                                Tab::make('SSH Keys')
+                                Tab::make(trans("admin/api.user_api.ssh_key"))
                                     ->icon('tabler-lock-code')
                                     ->schema([
-                                        Placeholder::make('Coming soon!'),
+                                        Placeholder::make(trans("admin/api.user_api.coming_soon")),
                                     ]),
 
-                                Tab::make('Activity')
+                                Tab::make(trans("admin/api.user_api.activity"))
                                     ->icon('tabler-history')
                                     ->schema([
                                         Repeater::make('activity')
