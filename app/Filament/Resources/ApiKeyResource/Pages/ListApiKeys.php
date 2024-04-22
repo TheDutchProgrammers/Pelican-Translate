@@ -23,11 +23,11 @@ class ListApiKeys extends ListRecords
     public function getTabs(): array
     {
         return [
-            'all' => Tab::make('All Keys'),
-            'application' => Tab::make('Application Keys')
+            'all' => Tab::make(trans("admin/api.Create_Key.all_keys")),
+            'application' => Tab::make(trans("admin/api.Create_Key.app_keys"))
                 ->modifyQueryUsing(fn (Builder $query) => $query->where('key_type', ApiKey::TYPE_APPLICATION)
                 ),
-            'account' => Tab::make('Account Keys')
+            'account' => Tab::make(trans("admin/api.Create_Key.account_keys"))
                 ->modifyQueryUsing(fn (Builder $query) => $query->where('key_type', ApiKey::TYPE_ACCOUNT)
                 ),
         ];

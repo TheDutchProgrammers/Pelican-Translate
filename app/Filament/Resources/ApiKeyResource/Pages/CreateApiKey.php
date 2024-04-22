@@ -9,5 +9,10 @@ class CreateApiKey extends CreateRecord
 {
     protected static string $resource = ApiKeyResource::class;
 
-    protected ?string $heading = 'Create Application API Key';
+    protected ?string $heading;
+
+    public function __construct()
+    {
+        $this->heading = trans("admin/api.Create_Key.header");
+    }
 }
